@@ -221,13 +221,13 @@ def create_visu_plot(delta_x, delta_y, poisson, net_architecture, number_trainin
     neumann_boundaries["d"] = {}
 
     error_total = 0
-    fig, ax = plt.subplots(4,3, constrained_layout=False, gridspec_kw={'width_ratios': [1, 1, 0.08], 'wspace': 0.2, 'hspace': 0.1}, figsize=(8, 16))
+    fig, ax = plt.subplots(5,3, constrained_layout=False, gridspec_kw={'width_ratios': [1, 1, 0.08], 'wspace': 0.2, 'hspace': 0.1}, figsize=(8, 16))
     handles = [
         Line2D([0], [0], color='black', linestyle='--', label='undeformed'),
         Line2D([0], [0], color=c_gismo, linestyle='-', label='Gismo'),
         Line2D([0], [0], color=c_network, linestyle='-', label='IGA Energy Potential'),
     ]
-    for i in range(4):
+    for i in range(5):
         # Load the model
         model = torch.load(
             f"{results_folder}network_{architecture}_r_8_{number_training_samples}.pth", weights_only=False)
