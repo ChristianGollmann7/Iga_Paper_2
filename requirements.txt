@@ -1,0 +1,17 @@
+click
+gustaf
+ipython
+matplotlib
+meshio
+numpy
+pandas
+PySide6
+PySide6_Addons
+PySide6_Essentials
+pytorch_lightning
+PyYAML
+splinepy
+torch
+torchsummary
+vedo
+xmltodict

@@ -1,0 +1,27 @@
+# ignore any directory named “results” (at any depth) and all its contents
+**/results/
+**/results_network_variation/
+
+# ignore any venv folder
+**/.venv/
+**/validation_set/
+**/validation_set_simple/
+**/validation_set_hard/
+**/multi_instance_results/
+**/multi_instance_results_presampled/
+**/vanilla_training_set/
+**/vanilla_training_set_simple/
+**/vanilla_results_simple/
+**/multi_instance_results_presampled_simple/
+**/results_1/
+**/results_2/
+**/results_3/
+
+# ignore any directory named “paraview_files” (at any depth) and all its contents
+**/paraview_files/
+
+*.png
+*.svg
+*.pth
+
+
