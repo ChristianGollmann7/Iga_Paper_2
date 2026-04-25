@@ -74,7 +74,7 @@ final_error_compare_max = []
 final_error_compare_mean = []
 
 # Load the networks
-networks = [f"results_1/network_{architecture}_r_8_{i}.pth" for i in number_training_samples]
+networks = [f"results_1_paper/network_{architecture}_r_8_{i}.pth" for i in number_training_samples]
 for network in networks:
     model = torch.load(network, weights_only=False)
     result_pinn = Pinn(model)
@@ -82,7 +82,7 @@ for network in networks:
     final_error_base_max.append(val_error_max)
     final_error_base_mean.append(val_error_mean)
 
-networks = [f"results_2/network_{architecture}_{i}.pth" for i in number_training_samples]
+networks = [f"results_2_paper/network_{architecture}_{i}.pth" for i in number_training_samples]
 for network in networks:
     model = torch.load(network, weights_only=False)
     result_pinn = Pinn(model)
@@ -112,7 +112,7 @@ ax.set_xticks(pos)
 ax.set_xscale('log')
 ax.set_xticklabels(labels, fontsize=14)
 ax.xaxis.set_major_formatter(ScalarFormatter())
-ax.set_ylabel('time [s]', fontsize=14, color='tab:blue')
+ax.set_ylabel('Wall-Clock Time (in s)', fontsize=14, color='tab:blue')
 ax.set_xlabel('number of training samples', fontsize=14)
 ax.tick_params(axis='y', colors='tab:blue')
 ax.set_yscale('log')
@@ -125,7 +125,7 @@ bars_7 = ax2.bar(pos*f_err_max, final_error_compare_max, bar_width, label='_nole
 bars_4 = ax2.bar(pos*f_err_mean, final_error_base_mean, bar_width, label='mean evaluation error', color='brown')
 bars_8 = ax2.bar(pos*f_err_mean, final_error_compare_mean, bar_width, label='_nolegend_', facecolor='none', edgecolor='black', linewidth=2)
 
-ax2.set_ylabel('evaluation error [length units]', fontsize=14, color='orange')
+ax2.set_ylabel('Cartesian Error', fontsize=14, color='orange')
 ax2.tick_params(axis='y', colors='orange')
 ax2.set_yscale('log')
 
@@ -146,7 +146,7 @@ ax.legend(
 ax.tick_params(axis='both', which='both', labelsize=14, length=6, width=1.5)
 ax2.tick_params(axis='both', which='both', labelsize=14, length=6, width=1.5)
 
-ax.set_title("Comparison between physics-based and supervised network", fontsize=16)
+#ax.set_title("Comparison between physics-based and supervised network", fontsize=16)
 
 ax.scatter(pos*f_prep*0.95, vanilla_preparation_times, marker='*', s=250, label='_nolegend')
 
