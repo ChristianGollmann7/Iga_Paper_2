@@ -57,7 +57,8 @@ def get_difference_visu_data(base: splinepy.BSpline,
                              S_real: splinepy.BSpline,
                              S_net: splinepy.BSpline,
                              resolution: int=32,
-                             relative: bool=False) -> tuple[NDArray[Real], PolyCollection]:
+                             relative: bool=False,
+                             plot_reference: str='base') -> tuple[NDArray[Real], PolyCollection]:
     """
     Creates the visualization data for the difference between two splines.
 
@@ -66,6 +67,7 @@ def get_difference_visu_data(base: splinepy.BSpline,
     :param S_net: predicted spline solution, this spline will be plotted as outline
     :param resolution: resolution of the visualization
     :param relative: if set to True, the relative distance is being returned = (real-net)/real
+    :param plot_reference: for which geometry the colored data will be calculated - choose between 'base', 'S_real' and 'S_net'
 
     Returns the cartesian difference and a PolyCollection object that can be plotted.
     """
@@ -83,7 +85,16 @@ def get_difference_visu_data(base: splinepy.BSpline,
         difference = calculate_cartesian_difference_at_positions(S_real, S_net, coords)
 
     # Deal with deformed mesh now
-    deformed_mesh = base.extract.faces([resolution, resolution])
+    if plot_reference == 'base':
+        plot_ref = base
+    elif plot_reference == 'S_real':
+        plot_ref = S_real
+    elif plot_reference == 'S_net':
+        plot_ref = S_net
+    else:
+        return None, None
+
+    deformed_mesh = plot_ref.extract.faces([resolution, resolution])
     deformed_vertices = deformed_mesh.vertices
     deformed_faces = connectivity
 
